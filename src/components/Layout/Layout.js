@@ -1,7 +1,6 @@
 import s from './Layout.module.css'
-import cn from 'classnames';
 
-const Layout = ({title, colorBg, urlBg, children}) => {
+const Layout = ({title, descr, colorBg, urlBg, children}) => {
     const style = {
         background: urlBg ? `url(${urlBg})` : colorBg,
         backgroundSize: "100vw 100vh"
@@ -16,12 +15,13 @@ const Layout = ({title, colorBg, urlBg, children}) => {
                             <h3>{title}</h3>
                             <span className={s.separator}/>
                         </div>
-                        <div className={cn(s.desc, s.full)}>
+                        <div className={`${s.desc} ${s.full}`}>
                             {children}
                         </div>
                     </article>
                 </div>
             </section>
+            }
         </>
     )
 }

@@ -1,6 +1,6 @@
 import s from './Footer.module.css'
 
-const Footer = () => {
+export const Footer = () => {
     return (
         <footer>
             <div className={s.wrapper}>
