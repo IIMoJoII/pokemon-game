@@ -6,8 +6,9 @@ import Layout from "../../components/Layout/Layout"
 
 import BgImg from '../../img/bgimg.jpg';
 import Footer from "../../components/Footer/Footer";
-import PokemonCard from "../../components/PokemonCard/PokemonCard";
+
 import MenuHeader from "../../components/MenuHeader/MenuHeader";
+import PokemonCard from "../../components/PokemonCard/PokemonCard";
 
 const POKEMONS = [
     {
@@ -171,15 +172,7 @@ const HomePage = ({onChangePage}) => {
                 colorBg={"#202736"}>
                 <div className="flex">
                     {
-                        POKEMONS.map((item) =>
-                            <PokemonCard
-                                key={item.id}
-                                name={item.name}
-                                img={item.img}
-                                type={item.type}
-                                id={item.id}
-                                values={item.values}
-                            />)
+                        POKEMONS.map((item) => <PokemonCard key={item.id} {...item}/>)
                     }
                 </div>
             </Layout>
