@@ -86,3 +86,20 @@
     color: #fafafa;
     line-height: 32px;
 }
+
+.startBtn{
+    width: 200px;
+    height: 40px;
+    background-color: transparent;
+    outline: none;
+    border: 2px solid #f300b4;
+    color: #f300b4;
+    font-size: 22px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.startBtn:hover{
+    transform: scale(1.02);
+    transition: 0.2s;
+}
