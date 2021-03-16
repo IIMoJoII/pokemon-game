@@ -67,6 +67,18 @@
     background: #f300b4;
 }
 
+.menuButton.deactive > span  {
+    margin-left: 15px;
+}
+
+.menuButton.deactive > span::before  {
+    margin-left: -15px;
+}
+
+.menuButton.deactive > span::after  {
+    margin-left: -15px;
+}
+
 .menuButton.active > span  {
     background: transparent;
 }

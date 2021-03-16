@@ -12,7 +12,7 @@ export const MenuHeader = () => {
     return (
        <div className={s.menu_header}>
             <NavBar buttonClick={handleButtonClick}/>
-            <Menu menuActive={isActive}/>
+            <Menu menuIsActive={isActive}/>
        </div>
     );
 }

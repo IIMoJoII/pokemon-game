@@ -1,10 +1,10 @@
 import s from './style.module.css'
 import cn from 'classnames';
 
-export const Menu = ({menuActive}) => {
+export const Menu = ({menuIsActive}) => {
     return (
         <div>
-            <div className={cn(s.menuContainer, menuActive ? s.active : s.deactive)}>
+            <div className={cn(s.menuContainer, { [s.active]: menuIsActive, [s.deactive]: !menuIsActive })}>
                 <div className={s.overlay}/>
                 <div className="menuItems">
                     <ul>
