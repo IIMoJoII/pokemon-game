@@ -1,19 +1,18 @@
 import s from './Header.module.css'
+import {Link} from "react-router-dom";
 
-const Header = ({title, descr, onClickButton}) => {
-    const handleClick = () => {
-        onClickButton && onClickButton('game');
-    }
-
+const Header = ({title, descr}) => {
     return(
         <header className={s.root}>
             <div className={s.forest} />
+            <div className={s.silhouette} />
+            <div className={s.moon} />
             <div className={s.container}>
                 {title && <h1>{title}</h1>}
                 {descr && <p>{descr}</p>}
-                <button className={s.startBtn} onClick={handleClick}>
+                <Link to="/game"><button className={s.startBtn}>
                     Start Game
-                </button>
+                </button></Link>
             </div>
         </header>
     )

@@ -1,29 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../../App.css';
 
 import Header from "../../components/Header/Header";
 import Layout from "../../components/Layout/Layout"
 
 import BgImg from '../../img/bgimg.jpg';
-import Footer from "../../components/Footer/Footer";
-
-import MenuHeader from "../../components/MenuHeader/MenuHeader";
-import PokemonCard from "../../components/PokemonCard/PokemonCard";
-import db from '../../pokemons.json'
 
 
 const HomePage = ({onChangePage}) => {
-    const handleClickButton = (page) => {
-        onChangePage && onChangePage(page);
-    }
-
     return (
         <div className="App">
-            <MenuHeader />
             <Header
                 title="Header title"
                 descr="Header description"
-                onClickButton={handleClickButton}
             />
             <Layout
                 id="rules"
@@ -31,17 +20,6 @@ const HomePage = ({onChangePage}) => {
                 urlBg={BgImg}>
                 <p>In the game two players face off against one another</p>
                 <p>Each player has five cards</p>
-            </Layout>
-            <Layout
-                id="cards"
-                title="Cards"
-                colorTitle="#FEFEFE"
-                colorBg={"#202736"}>
-                <div className="flex">
-                    {
-                        (db.pokemons).map((item) => <PokemonCard key={item.id} {...item}/>)
-                    }
-                </div>
             </Layout>
             <Layout
                 id="about"
@@ -60,7 +38,6 @@ const HomePage = ({onChangePage}) => {
                     and changed into the player's color instead.
                 </p>
             </Layout>
-            <Footer />
         </div>
     );
 }
