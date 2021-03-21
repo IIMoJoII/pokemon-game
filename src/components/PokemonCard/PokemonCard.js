@@ -2,9 +2,9 @@ import React from 'react'
 import s from './style.module.css'
 import CardBackSide from '../../img/card-back-side.jpg'
 
-const PokemonCard = ({name, img, id, type, values, handleClickCard, isActive}) => {
+const PokemonCard = ({name, img, id, type, values, handleClickCard, isActive, thiskey}) => {
     return(
-        <div className={s.root} onClick={() => handleClickCard(id)}>
+        <div className={s.root} onClick={() => handleClickCard(id, thiskey)}>
             <div className={`${s.pokemonCard} ${isActive ? s.active : ''}`}>
                 <div className={s.cardFront}>
                     <div className={`${s.wrap} ${s.front}`}>
