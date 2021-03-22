@@ -14,13 +14,25 @@ export const GamePage = () => {
         database.ref('pokemons').once('value', (snapshot) => {
             setPokemons(snapshot.val());
         })
-    }, [pokemons])
+    }, [])
 
-    function writePokemonData(key) {
+    function handleClickCard(key) {
         firebase.database().ref('pokemons/' + key).update({
-            active: true
-        });
+            active: !pokemons[key].active
+        }).then(data => setPokemons(prevState => {
+            return Object.entries(prevState).reduce((acc, item) => {
+                const pokemon = {...item[1]};
+                if (key === item[0]) {
+                    pokemon.active = !pokemons[key].active;
+                }
+
+                acc[item[0]] = pokemon;
+
+                return acc;
+            }, {});
+        }))
     }
+
 
     const handleAddPokemon = () => {
         const newKey = database.ref().child('pokemons').push().key;
@@ -55,24 +67,8 @@ export const GamePage = () => {
         });
     }
 
-    const handleClickCard = (pokemonId, key) => {
-        setPokemons(prevState => {
-            return Object.entries(prevState).reduce((acc, item) => {
-                const pokemon = {...item[1]};
-                if (pokemon.id === pokemonId) {
-                    writePokemonData(key)
-                }
-
-                acc[item[0]] = pokemon;
-
-                return acc;
-            }, {});
-        });
-    }
-
     return (
         <div>
-
             <Layout
                 id="cards"
                 title="Game"
