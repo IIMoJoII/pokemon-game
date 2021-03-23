@@ -1,101 +1,36 @@
-import PokemonCard from "../../components/PokemonCard/PokemonCard";
-import Layout from "../../components/Layout/Layout";
-import React, {useState, useEffect} from "react";
-import database from "../../service/firebase";
-import firebase from 'firebase/app';
-import 'firebase/database';
-import s from './style.module.css'
+import {Route, useRouteMatch, Switch} from 'react-router-dom'
+import StartPage from "./routs/Start";
+import BoardPage from "./routs/Board";
+import {pokemonContext} from "../../context/pokemonContext";
+import {useState} from 'react';
 
+const GamePage = () => {
+    const [pokemon, setPokemon] = useState([]);
 
-export const GamePage = () => {
-    const [pokemons, setPokemons] = useState({});
-
-    useEffect(() => {
-        database.ref('pokemons').once('value', (snapshot) => {
-            setPokemons(snapshot.val());
-        })
-    }, [])
-
-    function handleClickCard(key) {
-        firebase.database().ref('pokemons/' + key).update({
-            active: !pokemons[key].active
-        }).then(data => setPokemons(prevState => {
-            return Object.entries(prevState).reduce((acc, item) => {
-                const pokemon = {...item[1]};
-                if (key === item[0]) {
-                    pokemon.active = !pokemons[key].active;
-                }
-
-                acc[item[0]] = pokemon;
-
-                return acc;
-            }, {});
-        }))
+    const handlerSelectPokemon = (pokemonCard) => {
+        if(pokemon.length < 5){
+            setPokemon(prevState => [...prevState, pokemonCard]);
+        }
     }
 
+    console.log(pokemon)
 
-    const handleAddPokemon = () => {
-        const newKey = database.ref().child('pokemons').push().key;
-        firebase.database().ref('pokemons/' + newKey).set({
-            "abilities": [
-                "keen-eye",
-                "tangled-feet",
-                "big-pecks"
-            ],
-            "base_experience": 122,
-            "height": 11,
-            "active": false,
-            "weight": 300,
-            "id": 17,
-            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png",
-            "name": "pidgeotto",
-            "stats": {
-                "hp": 63,
-                "attack": 60,
-                "defense": 55,
-                "special-attack": 50,
-                "special-defense": 50,
-                "speed": 71
-            },
-            "type": "normal",
-            "values": {
-                "top": 7,
-                "right": 5,
-                "bottom": 1,
-                "left": 2
-            }
-        });
-    }
 
+    const match = useRouteMatch();
     return (
-        <div>
-            <Layout
-                id="cards"
-                title="Game"
-                colorTitle="#FEFEFE"
-                colorBg={"#202736"}>
-                <button onClick={handleAddPokemon} className={s.createBtn}>Create Pokemon</button>
-                <div className="flex">
-                    {
-                        Object.entries(pokemons).map(([key, {name, img, id, type, values, active}]) =>
-                            <PokemonCard
-                                key={key}
-                                thiskey={key}
-                                handleClickCard={handleClickCard}
-                                isActive={active}
-                                id={id}
-                                values={values}
-                                name={name}
-                                img={img}
-                                type={type}
-                            />)
-                    }
-                </div>
-
-            </Layout>
-        </div>
+        <pokemonContext.Provider value={{
+            pokemon,
+            selectPokemon: handlerSelectPokemon
+        }}>
+            <Switch>
+                <Route>
+                    <Route path={`${match.path}/`} exact component={StartPage} />
+                    <Route path={`${match.path}/board`} component={BoardPage} />
+                    {/*<Route path={`${match.path}/finish`} component={FinishPage}/>*/}
+                </Route>
+            </Switch>
+        </pokemonContext.Provider>
     );
-}
+};
 
 export default GamePage;
-
