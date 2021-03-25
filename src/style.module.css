@@ -1,5 +1,6 @@
 .wrap {
     min-height: calc(100vh);
+
 }
 
 .wrap.isHomePage {

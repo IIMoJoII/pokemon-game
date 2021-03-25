@@ -30,18 +30,28 @@
     background: none;
 }
 
-.card {
-    max-height: 14.8vw;
-    margin-top: -6vw;
-}
-
-.card:first-child {
-    margin-top: 0;
-}
 .playerOne {
     position: absolute;
     top: 4.3vw;
     left: 5vw;
     width: 250px;
     height: 50.3vw;
+}
+
+.playerTwo {
+    position: absolute;
+    top: 4.3vw;
+    right: 5vw;
+    width: 250px;
+    height: 50.3vw;
+}
+
+.finishBtn{
+    z-index: 9999;
+    position: absolute;
+    width: 300px;
+    height: 100px;
+
+    margin-left: calc(50vw - 150px);
+    margin-top: calc(50vh - 100px);
 }

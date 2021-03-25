@@ -2,12 +2,12 @@ import React from 'react'
 import s from './style.module.css'
 import cn from 'classnames'
 
-const PokemonCard = ({name, img, id, type, values, handleClickCard, isActive, thiskey, minimize, className, isSelected, toBoardStyle, handleClick}) => {
+const PokemonCard = ({name, img, id, type, values, handleClickCard, isActive, thiskey, minimize, className, isSelected, toBoardStyle, handleClick, possession, handleAdd, isAbleToGet, canAdd}) => {
     return(
-        <div onClick={handleClick ? () => handleClickCard(thiskey) : console.log('ez')} style={className} className={cn(s.pokemonCard, {[s.active]: isActive}, {[s.selected]: toBoardStyle})}>
+        <div onClick={handleClick ? () => handleClickCard(thiskey) : isAbleToGet ? () => handleAdd(id) : console.log("ez")} style={className} className={cn(s.pokemonCard, {[s.active]: isActive}, {[s.selected]: toBoardStyle})}>
             <div className={s.cardFront}>
-                <div className={cn(s.wrap, {[s.front]: !isSelected}, {[s.frontBlue]: isSelected})}>
-                    <div className={cn(s.pokemon, s[type])}>
+                <div className={cn(s.wrap, {[s.front]: !isSelected}, {[s.frontBlue]: isSelected}, {[s.frontBlue]: canAdd})}>
+                    <div className={cn(s.pokemon, s[type], s[possession])} >
                         <div className={s.values}>
                             <div className={cn(s.count, s.top)}>{values.top}</div>
                             <div className={cn(s.count, s.right)}>{values.right}</div>

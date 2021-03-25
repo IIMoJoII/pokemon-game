@@ -1,0 +1,18 @@
+.card {
+    max-height: 14.8vw;
+    margin-top: -6vw;
+}
+
+.card:first-child {
+    margin-top: 0;
+}
+
+.cardBoard {
+    max-width: 18vw;
+    max-height: 14.8vw;
+    margin-top: -40px;
+}
+
+.cardBoard.selected {
+    margin-left: -20px;
+}

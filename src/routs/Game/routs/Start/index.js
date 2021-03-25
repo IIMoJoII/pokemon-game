@@ -81,6 +81,8 @@ export const StartPage = () => {
 
     const match = useRouteMatch();
 
+    console.log(55, match)
+
     return (
         <div>
             <Layout
@@ -88,7 +90,7 @@ export const StartPage = () => {
                 title="Game"
                 colorTitle="#FEFEFE"
                 colorBg={"#202736"}>
-                <Link to={`${match.path}board`}><button disabled={selectedPokemonContext.pokemon.length !== 5} className={s.createBtn}>Start Game</button></Link>
+                <Link to={`${match.path}board/`}><button disabled={selectedPokemonContext.pokemon.length !== 5} className={s.createBtn}>Start Game</button></Link>
                 <button onClick={handleAddPokemon} className={s.createBtn}>Create Pokemon</button>
                 <div className="flex">
                     {
