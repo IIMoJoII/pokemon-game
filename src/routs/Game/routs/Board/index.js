@@ -80,17 +80,18 @@ const BoardPage = () => {
 
             if(count1 > count2) {
                 alert('WIN');
-                player2PokemonContext.isVictory = true
+                player2PokemonContext.setVictory(true);
             } else if(count1 < count2) {
                 alert('LOSE');
-                player2PokemonContext.isVictory = false
+                player2PokemonContext.setVictory(false);
             } else {
                 alert('DRAW')
-                player2PokemonContext.isVictory = false
+                player2PokemonContext.setVictory(false);
             }
         }
 
     }, [steps])
+
 
     if(steps === 9){
         isFinished = true;

@@ -9,34 +9,6 @@ import {useRouteMatch} from "react-router-dom";
 import {Link} from "react-router-dom";
 import {FireBaseContext} from "../../../../context/firebaseContext";
 
-const DATA = {
-    "abilities": [
-        "keen-eye",
-        "tangled-feet",
-        "big-pecks"
-    ],
-    "base_experience": 122,
-    "height": 11,
-    "weight": 300,
-    "id": 17,
-    "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png",
-    "name": "pidgeotto",
-    "stats": {
-        "hp": 63,
-        "attack": 60,
-        "defense": 55,
-        "special-attack": 50,
-        "special-defense": 50,
-        "speed": 71
-    },
-    "type": "normal",
-    "values": {
-        "top": 7,
-        "right": 5,
-        "bottom": 1,
-        "left": 2
-    }
-}
 
 
 export const StartPage = () => {
@@ -48,7 +20,8 @@ export const StartPage = () => {
         firebase.getPokemonSocket((pokemons) => {
             setPokemons(pokemons)
         })
-    }, [])
+        selectedPokemonContext.deletePokemons();
+    })
 
     function handleClickCard(key) {
         if(pokemons[key].active === undefined){
@@ -74,14 +47,8 @@ export const StartPage = () => {
         }
     }
 
-
-    const handleAddPokemon = () => {
-        firebase.addPokemon(DATA);
-    }
-
     const match = useRouteMatch();
 
-    console.log(55, match)
 
     return (
         <div>
@@ -91,7 +58,6 @@ export const StartPage = () => {
                 colorTitle="#FEFEFE"
                 colorBg={"#202736"}>
                 <Link to={`${match.path}board/`}><button disabled={selectedPokemonContext.pokemon.length !== 5} className={s.createBtn}>Start Game</button></Link>
-                <button onClick={handleAddPokemon} className={s.createBtn}>Create Pokemon</button>
                 <div className="flex">
                     {
                         Object.entries(pokemons).map(([key, {name, img, id, type, values, active, selected}]) =>

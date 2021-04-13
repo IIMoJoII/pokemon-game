@@ -8,10 +8,7 @@ import {FinishPage} from "./routs/Finish";
 const GamePage = () => {
     const [pokemon, setPokemon] = useState([]);
     const [isVictory, setVictory] = useState(false);
-
     const [player2Pokemons, setPlayer2Pokemons] = useState([]);
-
-    console.log(2, player2Pokemons)
 
     const handlerSelectPokemon = (pokemonCard) => {
         if(pokemon.length < 5){
@@ -19,8 +16,16 @@ const GamePage = () => {
         }
     }
 
+    const handlerSetVictory = (info) => {
+        setVictory(info)
+    }
+
     const handlerSelectPlayer2Pokemon = (player2) => {
         setPlayer2Pokemons(player2)
+    }
+
+    const handleDeletePokemons = () => {
+        setPokemon([])
     }
 
     const match = useRouteMatch();
@@ -31,7 +36,9 @@ const GamePage = () => {
             player2Pokemons,
             isVictory,
             selectPokemon: handlerSelectPokemon,
-            selectPlayer2Pokemon: handlerSelectPlayer2Pokemon
+            selectPlayer2Pokemon: handlerSelectPlayer2Pokemon,
+            setVictory: handlerSetVictory,
+            deletePokemons: handleDeletePokemons
         }}>
             <Switch>
                 <Route>

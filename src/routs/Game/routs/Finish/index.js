@@ -27,8 +27,6 @@ export const FinishPage = () => {
         firebase.addPokemon(choosenPokemon);
     }
 
-    console.log(pokemons.isVictory)
-
     return (
         <div className={s.finishPageWrapper}>
             <div className={s.finishPage}>
