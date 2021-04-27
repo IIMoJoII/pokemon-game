@@ -25,7 +25,7 @@
 }
 
 .pokemonCard.active {
-    animation: flipFront 1000ms 300ms forwards;
+    transform: rotateY(0deg);
 }
 
 
@@ -246,3 +246,12 @@
     transform: translate(-50%, 0);
     bottom: 0;
 }
+
+.blue{
+    background-color: #a8caea;
+}
+
+.red{
+    background-color: #d998b2;
+}
+
